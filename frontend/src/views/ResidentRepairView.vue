@@ -202,9 +202,10 @@ function statusLabel(s: string) {
 }
 
 function statusType(s: string) {
-  if (['PENDING_REVIEW', 'PENDING_ASSIGN', 'PENDING_ACCEPT'].includes(s)) return 'warning'
-  if (s === 'PROCESSING') return 'primary'
+  if (['PENDING_REVIEW', 'PENDING_ASSIGN'].includes(s)) return 'warning'
+  if (['PENDING_ACCEPT', 'PROCESSING'].includes(s)) return 'primary'
   if (['COMPLETED', 'EVALUATED'].includes(s)) return 'success'
+  if (s === 'CANCELLED') return 'info'
   return 'danger'
 }
 
@@ -217,7 +218,7 @@ function priorityType(p: string) {
 
 function formatTime(t: string) {
   if (!t) return '-'
-  return t.replace('T', ' ').substring(0, 19)
+  return t.replace('T', ' ').substring(0, 16)
 }
 
 async function fetchList() {
