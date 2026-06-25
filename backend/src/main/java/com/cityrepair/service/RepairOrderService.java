@@ -2,6 +2,7 @@ package com.cityrepair.service;
 
 import com.cityrepair.entity.RepairOrder;
 import com.cityrepair.entity.OrderStatusLog;
+import com.cityrepair.enums.OrderStatus;
 import com.cityrepair.entity.RepairCategory;
 import com.cityrepair.entity.OrderAttachment;
 import com.cityrepair.entity.SysUser;
@@ -140,7 +141,8 @@ public class RepairOrderService {
         if (!order.getResidentId().equals(userId)) {
             throw new RuntimeException("无权操作该工单");
         }
-        if (!"PENDING_REVIEW".equals(order.getStatus())) {
+        OrderStatus currentStatus = OrderStatus.valueOf(order.getStatus());
+        if (!currentStatus.canMoveTo(OrderStatus.CANCELLED)) {
             throw new RuntimeException("当前状态不可取消");
         }
 
