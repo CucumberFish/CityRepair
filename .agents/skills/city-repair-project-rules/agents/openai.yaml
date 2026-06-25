@@ -1,0 +1,4 @@
+interface:
+  display_name: "City Repair Project Rules"
+  short_description: "Enforce business, API, database, Git, test, and delivery rules for the city repair system."
+  default_prompt: "Use city-repair-project-rules to keep this city repair task within the fixed roles, status flow, database tables, API boundary, Git workflow, and evidence requirements."
