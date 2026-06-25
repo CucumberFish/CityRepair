@@ -1,0 +1,4 @@
+interface:
+  display_name: "City Repair UI Style"
+  short_description: "Apply the fixed visual, layout, component, status, and screenshot rules for the city repair frontend."
+  default_prompt: "Use city-repair-ui-style when building or modifying any Vue, Element Plus, table, form, detail, dashboard, or screenshot-related frontend work for this project."

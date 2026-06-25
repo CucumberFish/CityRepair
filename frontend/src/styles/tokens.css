@@ -1,0 +1,15 @@
+:root {
+  --cr-primary: #1f5fbf;
+  --cr-deep-blue: #174a7e;
+  --cr-bg: #f5f7fa;
+  --cr-surface: #ffffff;
+  --cr-text: #1f2937;
+  --cr-muted: #5f6b7a;
+  --cr-border: #d9e1ea;
+  --cr-success: #2e7d5b;
+  --cr-warning: #c97a10;
+  --cr-danger: #b83a3a;
+  --cr-radius-card: 8px;
+  --cr-radius-control: 6px;
+  --cr-shadow: 0 2px 8px rgba(31, 41, 55, 0.08);
+}
