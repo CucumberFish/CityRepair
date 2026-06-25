@@ -23,6 +23,12 @@ http.interceptors.response.use(
     return response
   },
   (error) => {
+    if (error?.response?.status === 401) {
+      localStorage.removeItem('token')
+      ElMessage.error('登录已过期，请重新登录')
+      window.location.href = '/resident/repairs'
+      return Promise.reject(error)
+    }
     ElMessage.error(error?.response?.data?.message || error.message || '网络异常')
     return Promise.reject(error)
   },

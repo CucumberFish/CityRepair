@@ -23,5 +23,6 @@ frontend/vite.config.d.ts
 .DS_Store
 Thumbs.db
 
+.claude/
 uploads/tmp/
 tmp/

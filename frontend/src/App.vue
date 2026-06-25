@@ -39,7 +39,16 @@
           <span class="topbar-title">{{ String($route.meta.title || '工作台') }}</span>
           <span class="topbar-subtitle">数据库：city_repair</span>
         </div>
-        <el-tag type="success" effect="light">开发骨架</el-tag>
+        <div class="topbar-right">
+          <template v-if="auth.isLoggedIn()">
+            <el-tag type="info" effect="plain" class="user-tag">
+              <el-icon><User /></el-icon>
+              {{ userDisplayName }}
+            </el-tag>
+            <el-button text type="info" size="small" @click="handleLogout">退出</el-button>
+          </template>
+          <el-tag v-else type="warning" effect="light">未登录</el-tag>
+        </div>
       </el-header>
 
       <el-main class="main-content">
@@ -50,7 +59,22 @@
 </template>
 
 <script setup lang="ts">
-import { ChatLineSquare, Checked, DataAnalysis, EditPen, Tools } from '@element-plus/icons-vue'
+import { onMounted, computed } from 'vue'
+import { ChatLineSquare, Checked, DataAnalysis, EditPen, Tools, User } from '@element-plus/icons-vue'
+import { useAuthStore } from '@/stores/auth'
+import { ElMessage } from 'element-plus'
+
+const auth = useAuthStore()
+const userDisplayName = computed(() => auth.state.user?.realName || auth.state.user?.username || '')
+
+function handleLogout() {
+  auth.logout()
+  ElMessage.success('已退出')
+}
+
+onMounted(() => {
+  auth.init()
+})
 </script>
 
 <style scoped>
@@ -125,5 +149,17 @@ import { ChatLineSquare, Checked, DataAnalysis, EditPen, Tools } from '@element-
 
 .main-content {
   padding: 20px;
+}
+
+.topbar-right {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.user-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
 }
 </style>
